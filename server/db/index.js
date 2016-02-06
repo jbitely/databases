@@ -1,4 +1,6 @@
 var mysql = require('mysql');
+var select = require('./select.js');
+var insert = require('./insert.js');
 
 // Create a database connection and export it from this file.
 // You will need to connect with the user "root", no password,
@@ -11,4 +13,4 @@ exports.connection = mysql.createConnection({
   database: "chat"
 });
 
-connection.connect();
+exports.connection.connect();
