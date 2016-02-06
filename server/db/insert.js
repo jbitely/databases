@@ -2,13 +2,10 @@ var db = require('./index.js');
 
 
 // post message function
-var postMessage = function(message){
-  // userid var
+exports.postMessage = function(message){
   var userid = null;
-  // roomid var
   var roomid = null;
 
-  // lookup userid based on usernmae
   var lookupUser = function(){
     db.connection.query("SELECT * FROM users WHERE username = ?;", message.username, function(err, result){
       if(err){
@@ -32,7 +29,6 @@ var postMessage = function(message){
       }
     })
   }
-
 
   var lookupRoom = function(){
     db.connection.query("SELECT * FROM rooms WHERE roomname = ?;", message.roomname, function(err, result){
@@ -72,10 +68,10 @@ var postMessage = function(message){
   lookupUser();
 }
 
-var message = {
-  content : "test content 4",
-  username: "Justin",
-  roomname: "test room 2"
-}
+// var message = {
+//   content : "test content 4",
+//   username: "Justin",
+//   roomname: "test room 2"
+// }
 
-postMessage(message);
+// postMessage(message);
