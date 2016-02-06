@@ -33,13 +33,13 @@ $(document).ready(function(){
     var $messageDiv = $('<div class="chat" />');
     var $message = $('<span class="message" />');
     var $username = $('<span class="username" />');
-    $message.content(_.escape(message.content)).appendTo($messageDiv);
+    $message.text(_.escape(message.content)).appendTo($messageDiv);
     $username.html(_.escape(message.username )+'<br />').attr('data-username', _.escape(message.username))
              .appendTo($messageDiv);
     if(message.username in app.friends){
       $messageDiv.addClass('friend');
     }
-    $message.content(_.escape(message.content)).appendTo($messageDiv);
+    $message.text(_.escape(message.content)).appendTo($messageDiv);
     $('#chats').append($messageDiv);
   }
 
@@ -70,6 +70,7 @@ $(document).ready(function(){
             app.addRoom(response.results[i].roomname)
           }
           if(response.results[i].roomname === $('#roomSelect').val()){
+            console.log("adding message")
             app.addMessage(response.results[i]);
           }
         };
@@ -111,13 +112,14 @@ $(document).ready(function(){
 
   $('#roomSelect').change(function(){
     var selected = $('#roomSelect').val();
+    app.clearMessages();
     if(selected === 'newRoom'){
       var newRoom = prompt('Enter a new room name');
       app.addRoom(newRoom);
       $('#roomSelect').val(newRoom);
+    } else {
+      app.fetch();
     }
-    app.clearMessages();
-    app.fetch();
   })
 
   app.addFriend = function(username){
