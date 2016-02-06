@@ -14,7 +14,9 @@ exports.getMessages = function(roomname, callback){
           console.log(err);
           return
         } else {
-          callback(result);
+          results = JSON.parse(JSON.stringify(result));
+          console.log(results);
+          callback(results);
         }
       });
     }

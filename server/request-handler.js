@@ -40,13 +40,15 @@ exports.requestHandler = function(request, response) {
   var actions = {
     "POST" : function(request, response){
       getData(request, function(message){
-        messages.push(message);
-        message.objectId = ++objectId;
+        db.insert(message);
         sendResponse(response, null, 201)
       });
     },
     "GET" : function(request, respone){
-      sendResponse(response, {results: messages}, 200);
+      var roomname = request.url.substr(29);
+      db.select(roomname, function(results){
+        sendResponse(response, {results: results}, 200);
+      });
     },
     "OPTIONS" : function(request, response){
       sendResponse(response, null, 200);

@@ -17,10 +17,10 @@ exports.connection.connect();
 
 
 // when POST request
-exports.dbInsert = function(message){
+exports.insert = function(message){
   insert.postMessage(message);
 }
 
-exports.dbSelect = function(roomname, callback){
+exports.select = function(roomname, callback){
    select.getMessages(roomname, callback);
 }

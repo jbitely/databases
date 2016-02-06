@@ -25,6 +25,8 @@ CREATE TABLE rooms (
   CONSTRAINT unique_name UNIQUE (roomname)
 );
 
+INSERT INTO users (username) VALUES ("Anonymous");
+INSERT INTO rooms (roomname) VALUES ("Lobby");
 
 
 /*  Execute this file from the command line by typing:

@@ -48,21 +48,25 @@ $(document).ready(function(){
       url: app.server,
       type: 'GET',
       contentType: 'application/JSON',
-      // data: {order:'-createdAt'},
+      data: {roomname: $('#roomSelect').val()},
       success: function(response){
         response = JSON.parse(response);
         app.clearMessages();
+        console.log(response);
         if(response.results.length === 0){
           return;
         }
         for (var i = 0; i < response.results.length; i++) {
+          console.log("processing: ", response.results[i]);
           var found = false;
           $('option').each(function(item){
             if($(this).val()===response.results[i].roomname){
+              console.log("found room");
               found = true;
             }
           })
           if(!found){
+            console.log("didn't find room, adding");
             app.addRoom(response.results[i].roomname)
           }
           if(response.results[i].roomname === $('#roomSelect').val()){
