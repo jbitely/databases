@@ -1,3 +1,4 @@
+var db = require('./db/index.js');
 var objectId = 0;
 var messages = []; // message storage
 
