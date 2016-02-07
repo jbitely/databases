@@ -4,7 +4,7 @@
  */
 
 var Sequelize = require("sequelize");
-var sequelize = new Sequelize("chatter", "root", "");
+var sequelize = new Sequelize("chat", "root", "");
 /* TODO this constructor takes the database name, username, then password.
  * Modify the arguments if you need to */
 
@@ -14,10 +14,14 @@ var User = sequelize.define('User', {
   username: Sequelize.STRING
 });
 
-var Message = sequelize.define('Message' {
-  userid: Sequelize.INTEGER,
-  text: Sequelize.STRING,
+var Room = sequelize.define('Room', {
   roomname: Sequelize.STRING
+});
+
+var Message = sequelize.define('Message', {
+  user_id: Sequelize.INTEGER,
+  content: Sequelize.STRING,
+  room_id: Sequelize.INTEGER
 });
 
 /* .sync() makes Sequelize create the database table for us if it doesn't

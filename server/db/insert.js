@@ -1,5 +1,5 @@
 var db = require('./index.js');
-
+var Sequelize = require("sequelize");
 
 // post message function
 exports.postMessage = function(message){
